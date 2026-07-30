@@ -8,7 +8,7 @@
      - GA4_ID:            p. ej. "G-XXXXXXXXXX" (Google Analytics 4)
      - PLAUSIBLE_DOMAIN:  p. ej. "helioxintelligence.com" (Plausible)
      Sin rellenar, los eventos se acumulan igualmente en window.dataLayer. */
-  var GA4_ID = "";
+  var GA4_ID = "G-ETKNB4CYZQ";
   var PLAUSIBLE_DOMAIN = "";
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
