@@ -1,4 +1,4 @@
-/* Heliox Intelligence — interacciones, analítica y test A/B del hero */
+/* Heliox Intelligence — interacciones, selector de servicios, formulario y analítica */
 
 (function () {
   "use strict";
@@ -35,74 +35,18 @@
 
   function track(event, props) {
     props = props || {};
-    props.hero_variant = variant;
     window.dataLayer.push({ event: event, props: props });
     if (typeof window.gtag === "function" && GA4_ID) window.gtag("event", event, props);
     if (typeof window.plausible === "function") window.plausible(event, { props: props });
   }
 
-  /* ═══════════ Test A/B/C del hero ═══════════
-     Asignación aleatoria persistente por visitante (localStorage).
-     Forzable para revisión con ?v=A | ?v=B | ?v=C */
-  var VARIANTS = {
-    A: null, // la del HTML: «Las guardias, resueltas.»
-    B: {
-      title: "Imagina no volver<br>a <span class=\"accent\">cuadrar una guardia.</span>",
-      lede: "Heliox aprende cómo funciona tu servicio y genera cada mes un calendario justo, completo y con los descansos garantizados. Tú solo lo revisas."
-    },
-    C: {
-      title: "Haz que el próximo calendario<br>sea <span class=\"accent\">el último a mano.</span>",
-      lede: "Creado por médicos, Heliox convierte las reglas de tu servicio en una planificación automática, equilibrada y sin conflictos."
-    }
-  };
-
-  var variant;
-  try {
-    var forced = new URLSearchParams(location.search).get("v");
-    if (forced && VARIANTS.hasOwnProperty(forced.toUpperCase())) {
-      variant = forced.toUpperCase();
-    } else {
-      variant = localStorage.getItem("heliox_variant");
-      if (!variant || !VARIANTS.hasOwnProperty(variant)) {
-        variant = ["A", "B", "C"][Math.floor(Math.random() * 3)];
-        localStorage.setItem("heliox_variant", variant);
-      }
-    }
-  } catch (e) {
-    variant = "A"; // localStorage bloqueado (modo privado estricto)
-  }
-
-  if (VARIANTS[variant]) {
-    var title = document.getElementById("heroTitle");
-    var lede = document.getElementById("heroLede");
-    if (title) title.innerHTML = VARIANTS[variant].title;
-    if (lede) lede.textContent = VARIANTS[variant].lede;
-  }
-  var variantField = document.getElementById("variantField");
-  if (variantField) variantField.value = variant;
-
   track("page_view", { path: location.pathname });
 
-  /* ═══════════ Nav: hairline al hacer scroll ═══════════ */
-  var nav = document.getElementById("nav");
-  var onScroll = function () {
-    nav.classList.toggle("scrolled", window.scrollY > 8);
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ═══════════ Clics en CTA (por ubicación) ═══════════ */
-  var ctaTargets = [
-    [document.querySelector(".btn-nav"), "nav"],
-    [document.querySelector(".hero .btn-primary"), "hero"],
-    [document.querySelector(".hero .btn-ghost"), "hero_secundario"]
-  ];
-  ctaTargets.forEach(function (pair) {
-    if (pair[0]) {
-      pair[0].addEventListener("click", function () {
-        track("cta_click", { location: pair[1] });
-      });
-    }
+  /* ═══════════ Clics en CTA ═══════════ */
+  document.querySelectorAll("[data-cta]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      track("cta_click", { location: el.getAttribute("data-cta") });
+    });
   });
 
   /* ═══════════ Profundidad de scroll ═══════════ */
@@ -119,108 +63,181 @@
     });
   }, { passive: true });
 
-  /* ═══════════ Reveals al entrar en viewport ═══════════ */
-  var reveals = document.querySelectorAll(".reveal");
+  /* ═══════════ Animaciones al entrar en viewport ═══════════ */
+  var groups = document.querySelectorAll("[data-anim]");
   if ("IntersectionObserver" in window && !reducedMotion) {
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-    reveals.forEach(function (el, i) {
-      el.style.transitionDelay = Math.min(i % 6, 4) * 60 + "ms";
-      io.observe(el);
-    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("play");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    groups.forEach(function (g) { io.observe(g); });
   } else {
-    reveals.forEach(function (el) { el.classList.add("visible"); });
+    groups.forEach(function (g) { g.classList.add("play"); });
   }
 
-  /* ═══════════ Calendario del hero: del caos al orden ═══════════ */
-  var grid = document.getElementById("calGrid");
-  var badge = document.getElementById("calBadge");
-  if (grid) {
-    var DAYS = 35; // 5 semanas
-    var assignment = [
-      1, 0, 2, 0, 3, 4, 0,
-      0, 1, 0, 2, 0, 0, 3,
-      4, 0, 1, 0, 2, 3, 0,
-      0, 4, 0, 1, 0, 0, 2,
-      3, 0, 4, 0, 1, 2, 0
-    ];
-    var initials = ["", "AG", "MR", "LP", "JC"];
-    var cells = [];
+  /* ═══════════ 04 · Selector de servicios ═══════════ */
+  var DEPTS = [
+    { id: "urg", name: "Urgencias", rules: ["Turnos de 12 y 24 horas encadenados", "Mínimo dos adjuntos por turno de noche", "Descanso obligatorio tras guardia de 24 h", "Máximo cinco guardias por persona y mes"],
+      blocks: [[0, 0, 60, "solid"], [60, 1, 40, "accent"], [20, 2, 20, "soft"], [40, 3, 60, "solid"], [0, 4, 20, "accent"], [20, 5, 40, "softAccent"], [60, 6, 40, "solid"]] },
+    { id: "uci", name: "Medicina Intensiva", rules: ["Cobertura continua 24/7 sin huecos", "Relevo presencial en cada cambio de turno", "Un residente siempre acompañado de adjunto", "Máximo dos noches consecutivas"],
+      blocks: [[0, 0, 40, "solid"], [40, 0, 60, "accent"], [0, 1, 100, "soft"], [0, 2, 50, "solid"], [50, 3, 50, "accent"], [0, 4, 100, "softAccent"], [20, 5, 60, "solid"], [0, 6, 100, "soft"]] },
+    { id: "anest", name: "Anestesiología", rules: ["Quirófano programado y localizada separados", "Reparto por áreas quirúrgicas", "Sin guardia el día previo a programado largo", "Localizada compensada al mes siguiente"],
+      blocks: [[0, 0, 20, "solid"], [40, 0, 20, "accent"], [80, 0, 20, "solid"], [20, 2, 20, "soft"], [60, 2, 20, "accent"], [0, 3, 20, "solid"], [40, 4, 20, "softAccent"], [80, 4, 20, "solid"], [20, 6, 20, "accent"]] },
+    { id: "radio", name: "Radiodiagnóstico", rules: ["Guardias por modalidad: TC, RM, intervencionista", "Cobertura de informe urgente toda la noche", "Rotación equitativa de fines de semana", "Teleguardia contabilizada como presencial"],
+      blocks: [[0, 0, 100, "soft"], [0, 1, 40, "solid"], [60, 1, 40, "accent"], [0, 3, 60, "solid"], [60, 4, 40, "softAccent"], [0, 5, 40, "accent"], [40, 6, 60, "solid"]] },
+    { id: "ped", name: "Pediatría", rules: ["Neonatal y urgencias pediátricas diferenciadas", "Adjunto de guardia con experiencia neonatal", "Compensación de festivos por bloques", "Sin guardia en semana de consulta doble"],
+      blocks: [[0, 0, 50, "accent"], [50, 1, 50, "solid"], [0, 2, 50, "softAccent"], [50, 3, 50, "accent"], [0, 4, 50, "solid"], [50, 5, 50, "soft"], [0, 6, 50, "accent"]] },
+    { id: "cir", name: "Cirugía General", rules: ["Equipo de guardia: adjunto, residente mayor y menor", "Sin quirófano programado tras guardia", "Reparto de festivos por antigüedad y turno", "Máximo cuatro guardias por persona y mes"],
+      blocks: [[0, 0, 60, "solid"], [0, 1, 60, "accent"], [0, 2, 60, "softAccent"], [40, 3, 60, "solid"], [40, 4, 60, "accent"], [40, 5, 60, "soft"], [0, 6, 100, "solid"]] }
+  ];
+  var TONES = { solid: "#eef2f6", accent: "#94bce3", soft: "rgba(238,242,246,.3)", softAccent: "rgba(148,188,227,.3)" };
+  var ROWS = 7;
 
-    for (var d = 0; d < DAYS; d++) {
-      var cell = document.createElement("span");
-      cell.className = "cal-cell" + (assignment[d] ? " p" + assignment[d] : "");
-      cell.textContent = initials[assignment[d]];
-      grid.appendChild(cell);
-      cells.push(cell);
-    }
+  var deptList = document.getElementById("deptList");
+  var deptRules = document.getElementById("deptRules");
+  var deptQuad = document.getElementById("deptQuadrant");
+  var deptName = document.getElementById("deptName");
+  var currentDept = 0;
 
-    var checks = document.querySelectorAll(".cal-check");
-
-    var finish = function () {
-      if (badge) {
-        badge.textContent = "Calendario listo";
-        badge.classList.add("done");
-      }
-      checks.forEach(function (c, i) {
-        setTimeout(function () { c.classList.add("on"); }, reducedMotion ? 0 : 150 * i);
-      });
-    };
-
-    if (reducedMotion) {
-      cells.forEach(function (c) { c.classList.add("on", "assigned"); });
-      finish();
-    } else {
-      cells.forEach(function (c, i) {
-        setTimeout(function () { c.classList.add("on"); }, 200 + i * 14);
-      });
-      var assignedIdx = [];
-      assignment.forEach(function (p, i) { if (p) assignedIdx.push(i); });
-      assignedIdx.forEach(function (idx, i) {
-        setTimeout(function () {
-          cells[idx].classList.add("assigned");
-        }, 1100 + i * 90);
-      });
-      setTimeout(finish, 1100 + assignedIdx.length * 90 + 300);
-    }
-  }
-
-  /* ═══════════ FAQ: acordeón + tracking ═══════════ */
-  var faqItems = document.querySelectorAll(".faq-item");
-  faqItems.forEach(function (item, idx) {
-    item.addEventListener("toggle", function () {
-      if (item.open) {
-        faqItems.forEach(function (other) {
-          if (other !== item) other.open = false;
-        });
-        var q = item.querySelector("summary");
-        track("faq_open", { question: q ? q.textContent.trim().slice(0, 60) : String(idx) });
-      }
+  function renderDept() {
+    var d = DEPTS[currentDept];
+    deptList.querySelectorAll(".dept-btn").forEach(function (b, i) {
+      b.setAttribute("aria-selected", i === currentDept ? "true" : "false");
     });
-  });
+    deptName.textContent = d.name;
 
-  /* ═══════════ Formulario: envío AJAX a FormSubmit ═══════════ */
+    deptRules.innerHTML = "";
+    d.rules.forEach(function (r, i) {
+      var row = document.createElement("div");
+      row.className = "dept-rule";
+      row.style.animationDelay = reducedMotion ? "0s" : (i * 0.05) + "s";
+      var tick = document.createElement("span");
+      tick.className = "tick";
+      row.appendChild(tick);
+      row.appendChild(document.createTextNode(r));
+      deptRules.appendChild(row);
+    });
+
+    deptQuad.innerHTML = "";
+    var q = document.createElement("div");
+    q.className = "quadrant";
+    q.style.backgroundSize = "calc(100%/5) calc(100%/" + ROWS + ")";
+    d.blocks.forEach(function (b, i) {
+      var block = document.createElement("div");
+      block.style.left = b[0] + "%";
+      block.style.top = (b[1] * (100 / ROWS)) + "%";
+      block.style.width = b[2] + "%";
+      block.style.height = (100 / ROWS) + "%";
+      block.style.background = TONES[b[3]];
+      block.style.setProperty("--dx", (i % 2 ? -22 : 24) + "px");
+      block.style.setProperty("--dy", (i % 3 ? 24 : -20) + "px");
+      block.style.animationDelay = reducedMotion ? "0s" : (0.05 + i * 0.06) + "s";
+      q.appendChild(block);
+    });
+    deptQuad.appendChild(q);
+  }
+
+  if (deptList) {
+    DEPTS.forEach(function (d, i) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dept-btn";
+      btn.setAttribute("role", "tab");
+      var num = document.createElement("span");
+      num.className = "dept-num";
+      num.textContent = String(i + 1).padStart(2, "0");
+      btn.appendChild(num);
+      btn.appendChild(document.createTextNode(d.name));
+      btn.addEventListener("click", function () {
+        if (currentDept === i) return;
+        currentDept = i;
+        renderDept();
+        track("dept_select", { dept: d.name });
+      });
+      deptList.appendChild(btn);
+    });
+    renderDept();
+  }
+
+  /* ═══════════ Contacto: chips de servicio ═══════════ */
+  var chipsBox = document.getElementById("chips");
+  var servicioField = document.getElementById("servicioField");
+  if (chipsBox) {
+    DEPTS.map(function (d) { return d.name; }).concat(["Otro"]).forEach(function (name) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "chip";
+      chip.textContent = name;
+      chip.setAttribute("aria-pressed", "false");
+      chip.addEventListener("click", function () {
+        var wasSelected = chip.getAttribute("aria-pressed") === "true";
+        chipsBox.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+        if (!wasSelected) {
+          chip.setAttribute("aria-pressed", "true");
+          servicioField.value = name;
+        } else {
+          servicioField.value = "";
+        }
+      });
+      chipsBox.appendChild(chip);
+    });
+  }
+
+  /* ═══════════ Contacto: validación + envío AJAX a FormSubmit ═══════════ */
   var form = document.getElementById("demoForm");
   var successBox = document.getElementById("formSuccess");
-  var errorBox = document.getElementById("formError");
+  var successTitle = document.getElementById("successTitle");
+  var successText = document.getElementById("successText");
+  var hint = document.getElementById("formHint");
+  var submitBtn = document.getElementById("submitBtn");
+  var resetBtn = document.getElementById("resetBtn");
+  var HINT_DEFAULT = "No compartimos tus datos con terceros.";
+
+  function fieldWrap(input) { return input.closest(".field"); }
+
+  function validate() {
+    var bad = [];
+    var nombre = form.elements.nombre;
+    var email = form.elements.email;
+    var hospital = form.elements.hospital;
+    if (!nombre.value.trim()) bad.push(nombre);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.value.trim())) bad.push(email);
+    if (!hospital.value.trim()) bad.push(hospital);
+    [nombre, email, hospital].forEach(function (input) {
+      fieldWrap(input).classList.toggle("invalid", bad.indexOf(input) !== -1);
+    });
+    return bad;
+  }
+
   if (form) {
     var endpoint = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
+    ["nombre", "email", "hospital"].forEach(function (name) {
+      form.elements[name].addEventListener("input", function () {
+        fieldWrap(form.elements[name]).classList.remove("invalid");
+        hint.textContent = HINT_DEFAULT;
+        hint.classList.remove("error");
+      });
+    });
+
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      if (errorBox) errorBox.hidden = true;
-      var btn = form.querySelector("button[type=submit]");
-      var original = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = "Enviando…";
+      var bad = validate();
+      if (bad.length) {
+        hint.textContent = "Revisa nombre, correo y hospital.";
+        hint.classList.add("error");
+        bad[0].focus();
+        return;
+      }
+
+      var firstName = form.elements.nombre.value.trim().split(" ")[0];
+      var email = form.elements.email.value.trim();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
 
       fetch(endpoint, {
         method: "POST",
@@ -232,19 +249,33 @@
           return res.json();
         })
         .then(function () {
-          track("demo_request", { conversion: true });
+          track("demo_request", { conversion: true, servicio: servicioField.value || "sin indicar" });
+          successTitle.textContent = "Gracias, " + firstName + ".";
+          successText.textContent = "Te escribimos a " + email + " con los siguientes pasos.";
           form.hidden = true;
-          if (successBox) {
-            successBox.hidden = false;
-            successBox.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
-          }
+          successBox.hidden = false;
+          successBox.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
         })
         .catch(function () {
           track("demo_request_error", {});
-          if (errorBox) errorBox.hidden = false;
-          btn.disabled = false;
-          btn.textContent = original;
+          hint.textContent = "No se ha podido enviar. Inténtalo de nuevo en un momento.";
+          hint.classList.add("error");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Enviar";
         });
+    });
+
+    resetBtn.addEventListener("click", function () {
+      form.reset();
+      servicioField.value = "";
+      chipsBox.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+      hint.textContent = HINT_DEFAULT;
+      hint.classList.remove("error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Enviar";
+      successBox.hidden = true;
+      form.hidden = false;
+      form.elements.nombre.focus();
     });
   }
 })();

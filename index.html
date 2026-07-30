@@ -3,387 +3,266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heliox Intelligence — Las guardias, resueltas</title>
-<meta name="description" content="El sistema que aprende cómo funciona tu servicio y organiza las guardias por ti. Creado por médicos, hecho a medida para cada hospital.">
+<title>Heliox Intelligence — La última guardia que harás a mano</title>
+<meta name="description" content="Heliox construye el cuadrante de guardias de tu servicio con sus reglas, sus turnos y sus personas. Desarrollado por médicos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230B1220'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23ffffff' font-family='Georgia'>H</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f7f6f3'/><rect x='22' y='22' width='56' height='56' fill='none' stroke='%231d2d3d' stroke-width='8'/><rect x='38' y='38' width='24' height='24' fill='%231d2d3d'/></svg>">
 </head>
 <body>
 
+<div class="page">
+
 <!-- ══════════════ NAV ══════════════ -->
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <a class="brand" href="#top" aria-label="Heliox Intelligence — inicio">
-      <span class="brand-mark" aria-hidden="true">H</span>
-      <span class="brand-name">Heliox <em>Intelligence</em></span>
-    </a>
-    <nav class="nav-links" aria-label="Secciones">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#personalizacion">Personalización</a>
-      <a href="#faq">Preguntas</a>
-    </nav>
-    <a class="btn btn-primary btn-nav" href="#demo">Solicitar demostración</a>
-  </div>
+<header class="site-head" id="siteHead">
+  <a href="#top" class="logo" aria-label="Heliox Intelligence — inicio">
+    <span class="logo-mark" aria-hidden="true"><span></span></span>
+    <span class="logo-name">Heliox</span>
+    <span class="logo-sub">Intelligence</span>
+  </a>
+  <nav class="site-nav" aria-label="Secciones">
+    <a href="#reglas">Reglas</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#producto">Sistema</a>
+    <a href="#contacto" class="nav-cta" data-cta="nav">Contacto</a>
+  </nav>
 </header>
 
-<main id="top">
+<main>
 
-<!-- ══════════════ 1 · HERO ══════════════ -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Creado por médicos, para médicos</p>
-      <h1 id="heroTitle">Las guardias,<br><span class="accent">resueltas.</span></h1>
-      <p class="lede" id="heroLede">Un sistema que aprende las reglas de tu servicio —todas— y construye el calendario de guardias por ti. Justo, completo y sin conflictos. En minutos, no en tardes.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary btn-lg" href="#demo">Solicitar una demostración</a>
-        <a class="btn btn-ghost btn-lg" href="#como-funciona">Ver cómo funciona</a>
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero split" id="top">
+  <div class="hero-copy">
+    <div class="kicker kicker-accent rise" style="animation-delay:0s"><span class="kline" aria-hidden="true"></span>Asignación automática de guardias</div>
+    <h1 class="hero-title rise" style="animation-delay:.06s">La última guardia que harás a mano.</h1>
+    <p class="hero-sub rise" style="animation-delay:.12s">El software que asigna las guardias de tu servicio cumpliendo sus normas.</p>
+    <p class="hero-lede rise" style="animation-delay:.16s">Descansos, cobertura mínima, festivos, rotaciones y preferencias. Heliox genera el cuadrante del mes; tú lo revisas y lo publicas.</p>
+    <div class="hero-cta rise" style="animation-delay:.2s">
+      <a href="#contacto" class="btn-solid" data-cta="hero">Contacta con nosotros</a>
+      <span class="hero-note">Desarrollado por médicos</span>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-board">
+      <div class="hero-cal">
+        <div class="snap-load" style="--dx:34px;--dy:-22px;left:0;top:0;width:28.57%;height:16.66%;background:#1d2d3d;animation-delay:.3s"></div>
+        <div class="snap-load" style="--dx:-26px;--dy:30px;left:42.85%;top:0;width:14.28%;height:16.66%;background:#5980a6;animation-delay:.38s"></div>
+        <div class="snap-load" style="--dx:30px;--dy:24px;left:14.28%;top:16.66%;width:42.85%;height:16.66%;background:rgba(89,128,166,.22);animation-delay:.46s"></div>
+        <div class="snap-load" style="--dx:-34px;--dy:-18px;left:71.42%;top:16.66%;width:28.57%;height:16.66%;background:#1d2d3d;animation-delay:.54s"></div>
+        <div class="snap-load" style="--dx:22px;--dy:34px;left:0;top:33.33%;width:14.28%;height:16.66%;background:#5980a6;animation-delay:.62s"></div>
+        <div class="snap-load" style="--dx:-30px;--dy:22px;left:28.57%;top:33.33%;width:28.57%;height:16.66%;background:rgba(29,45,61,.14);animation-delay:.7s"></div>
+        <div class="snap-load" style="--dx:26px;--dy:-28px;left:57.14%;top:50%;width:42.85%;height:16.66%;background:#1d2d3d;animation-delay:.78s"></div>
+        <div class="snap-load" style="--dx:-22px;--dy:26px;left:14.28%;top:66.66%;width:28.57%;height:16.66%;background:#5980a6;animation-delay:.86s"></div>
+        <div class="snap-load" style="--dx:30px;--dy:18px;left:57.14%;top:83.33%;width:14.28%;height:16.66%;background:rgba(89,128,166,.28);animation-delay:.94s"></div>
       </div>
-      <p class="microcopy">30 minutos. Sin compromiso. Con tu propio calendario sobre la mesa.</p>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="cal-card">
-        <div class="cal-head">
-          <span class="cal-month">Marzo — Guardias</span>
-          <span class="cal-badge" id="calBadge">Generando…</span>
-        </div>
-        <div class="cal-week">
-          <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
-        </div>
-        <div class="cal-grid" id="calGrid"></div>
-        <div class="cal-foot">
-          <span class="cal-check">✓ Descansos respetados</span>
-          <span class="cal-check">✓ Reparto equilibrado</span>
-          <span class="cal-check">✓ 0 conflictos</span>
-        </div>
-      </div>
+      <div class="status-note rise" style="animation-delay:1.1s"><span class="status-dot"></span>Cuadrante cerrado</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ Franja de confianza ══════════════ -->
-<section class="trust">
-  <div class="container trust-row reveal">
-    <span>Diseñado por médicos que también han hecho ese Excel</span>
-    <span class="dot" aria-hidden="true"></span>
-    <span>Una implementación a medida por servicio</span>
-    <span class="dot" aria-hidden="true"></span>
-    <span>Tus reglas. Tu forma de trabajar. Automatizada.</span>
+<!-- ══════════════ 01 · EL PUNTO DE PARTIDA ══════════════ -->
+<section class="sec">
+  <div class="kicker"><span>01</span><span>El punto de partida</span></div>
+  <h2 class="h-xl">Un mes de guardias son trescientas decisiones encadenadas.</h2>
+  <p class="lede">Vacaciones, descansos obligatorios, rotaciones, preferencias, imprevistos. Se resuelve en una hoja de cálculo, de noche, y se rehace cada vez que alguien cambia un día.</p>
+
+  <div class="strip anim-group" data-anim>
+    <div class="snap" style="--dx:-58px;--dy:44px;left:0;top:10%;width:14.28%;height:15%;background:#1d2d3d;--d:.0s"></div>
+    <div class="snap" style="--dx:64px;--dy:-38px;left:14.28%;top:40%;width:7.14%;height:15%;background:#5980a6;--d:.07s"></div>
+    <div class="snap" style="--dx:-46px;--dy:-52px;left:21.42%;top:10%;width:21.42%;height:15%;background:rgba(89,128,166,.25);--d:.14s"></div>
+    <div class="snap" style="--dx:52px;--dy:48px;left:42.85%;top:40%;width:14.28%;height:15%;background:#1d2d3d;--d:.21s"></div>
+    <div class="snap" style="--dx:-60px;--dy:36px;left:57.14%;top:10%;width:7.14%;height:15%;background:#5980a6;--d:.28s"></div>
+    <div class="snap" style="--dx:44px;--dy:-46px;left:64.28%;top:40%;width:21.42%;height:15%;background:rgba(29,45,61,.14);--d:.35s"></div>
+    <div class="snap" style="--dx:-50px;--dy:-40px;left:85.71%;top:10%;width:14.28%;height:15%;background:#1d2d3d;--d:.42s"></div>
+    <div class="snap" style="--dx:56px;--dy:42px;left:28.57%;top:70%;width:28.57%;height:15%;background:rgba(89,128,166,.3);--d:.49s"></div>
+    <div class="snap" style="--dx:-42px;--dy:50px;left:71.42%;top:70%;width:14.28%;height:15%;background:#5980a6;--d:.56s"></div>
+    <div class="snap" style="--dx:48px;--dy:-44px;left:0;top:70%;width:21.42%;height:15%;background:rgba(29,45,61,.1);--d:.63s"></div>
   </div>
+  <div class="strip-labels"><span>Semana 01</span><span>Semana 02</span><span>Semana 03</span><span>Semana 04</span></div>
 </section>
 
-<!-- ══════════════ 2 · IMAGINA ══════════════ -->
-<section class="imagine section-dark">
-  <div class="container narrow">
-    <p class="eyebrow eyebrow-light reveal">Imagina</p>
-    <div class="imagine-lines">
-      <p class="imagine-line reveal">Imagina que el calendario del mes que viene <em>ya está hecho.</em></p>
-      <p class="imagine-line reveal">Imagina que cada cambio de última hora se resuelve <em>en un minuto,</em> no en una cadena de mensajes.</p>
-      <p class="imagine-line reveal">Imagina no tener que defender el reparto, porque el reparto <em>es justo y todos lo saben.</em></p>
-      <p class="imagine-line reveal">¿Y si organizar las guardias dejara de ser parte de tu trabajo… <em>sin dejar de estar bajo tu control?</em></p>
-    </div>
+<!-- ══════════════ 02 · LAS REGLAS ══════════════ -->
+<section class="split" id="reglas">
+  <div class="split-copy">
+    <div class="kicker"><span>02</span><span>Las reglas</span></div>
+    <h2 class="h-lg">Tu servicio ya tiene reglas. Heliox las cumple.</h2>
+    <p class="lede">No hay que adaptarse al programa. Se escriben las condiciones del servicio una vez y el sistema no vuelve a romperlas.</p>
+    <p class="note">Cuando una condición entra en conflicto con otra, Heliox lo dice antes de publicar, no después.</p>
   </div>
-</section>
-
-<!-- ══════════════ 3 · EL PROBLEMA ══════════════ -->
-<section class="problem">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">El problema</p>
-      <h2>Cada mes, la misma montaña.</h2>
-      <p class="section-lede">Organizar las guardias de un servicio no es rellenar un calendario. Es resolver un rompecabezas con decenas de piezas que cambian cada semana.</p>
-    </div>
-    <ul class="pain-grid">
-      <li class="pain reveal"><strong>Horas de Excel</strong><span>Tardes enteras moviendo celdas que se rompen con el primer cambio.</span></li>
-      <li class="pain reveal"><strong>Reglas imposibles de aplicar a mano</strong><span>Descansos, rotaciones, vacaciones, docencia, festivos… todo a la vez.</span></li>
-      <li class="pain reveal"><strong>Cambios constantes</strong><span>Una baja, un congreso, un cambio de rotación. Y vuelta a empezar.</span></li>
-      <li class="pain reveal"><strong>Conflictos entre compañeros</strong><span>«A mí siempre me tocan los findes.» Y no hay forma de demostrar lo contrario.</span></li>
-      <li class="pain reveal"><strong>Descansos en riesgo</strong><span>Respetar las libranzas a mano, con veinte personas, es cuestión de suerte.</span></li>
-      <li class="pain reveal"><strong>Un trabajo invisible</strong><span>Nadie lo agradece cuando sale bien. Todos lo señalan cuando sale mal.</span></li>
+  <div class="split-panel">
+    <ul class="rule-list anim-group" data-anim>
+      <li><span class="rule-name">Descanso obligatorio tras 24 horas</span><span class="check" style="--d:0s" aria-hidden="true"><span></span><span></span></span></li>
+      <li><span class="rule-name">Máximo de guardias por persona y mes</span><span class="check" style="--d:.12s" aria-hidden="true"><span></span><span></span></span></li>
+      <li><span class="rule-name">Cobertura mínima por turno y categoría</span><span class="check" style="--d:.24s" aria-hidden="true"><span></span><span></span></span></li>
+      <li><span class="rule-name">Vacaciones, congresos y ausencias</span><span class="check" style="--d:.36s" aria-hidden="true"><span></span><span></span></span></li>
+      <li><span class="rule-name">Preferencias y cambios entre compañeros</span><span class="check" style="--d:.48s" aria-hidden="true"><span></span><span></span></span></li>
     </ul>
   </div>
 </section>
 
-<!-- ══════════════ 4 · EL COSTE OCULTO ══════════════ -->
-<section class="cost section-alt">
-  <div class="container">
-    <div class="cost-grid">
-      <div class="cost-copy reveal">
-        <p class="eyebrow">El coste oculto</p>
-        <h2>El Excel no cobra licencia.<br>Cobra tardes.</h2>
-        <p>Cada mes que el calendario se hace a mano, alguien de tu servicio paga el precio: horas de un médico dedicadas a mover celdas, errores que acaban en guardias dobladas o descansos incumplidos, y una tensión de fondo que se acumula turno a turno.</p>
-        <p>Seguir haciéndolo manualmente no es gratis. Solo es un coste que nadie apunta.</p>
+<!-- ══════════════ 03 · EL REPARTO ══════════════ -->
+<section class="sec">
+  <div class="kicker"><span>03</span><span>El reparto</span></div>
+  <div class="balance">
+    <div>
+      <h2 class="h-lg">Equilibrado, y demostrable.</h2>
+      <p class="lede">Cada persona ve por qué le toca lo que le toca. La carga se reparte con el mismo criterio para todos, y queda escrito.</p>
+    </div>
+    <div class="bars anim-group" data-anim>
+      <div class="bars-head"><span>Equipo</span><span>Carga del mes</span></div>
+      <div class="bar-row"><span>Adjunto A</span><span class="bar"><span class="bar-fill" style="--s0:.32;--s1:.78;--d:0s;background:#1d2d3d"></span></span></div>
+      <div class="bar-row"><span>Adjunto B</span><span class="bar"><span class="bar-fill" style="--s0:1;--s1:.8;--d:.08s;background:#1d2d3d"></span></span></div>
+      <div class="bar-row"><span>Adjunto C</span><span class="bar"><span class="bar-fill" style="--s0:.18;--s1:.76;--d:.16s;background:#5980a6"></span></span></div>
+      <div class="bar-row"><span>Adjunto D</span><span class="bar"><span class="bar-fill" style="--s0:.9;--s1:.79;--d:.24s;background:#1d2d3d"></span></span></div>
+      <div class="bar-row"><span>Residente E</span><span class="bar"><span class="bar-fill" style="--s0:.42;--s1:.74;--d:.32s;background:#5980a6"></span></span></div>
+      <div class="bar-row"><span>Residente F</span><span class="bar"><span class="bar-fill" style="--s0:.6;--s1:.77;--d:.4s;background:#1d2d3d"></span></span></div>
+      <div class="status-note"><span class="status-dot"></span>Desviación dentro del margen acordado</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 04 · CADA SERVICIO ══════════════ -->
+<section class="sec sec-dark" id="servicios">
+  <div class="kicker kicker-dark"><span>04</span><span>Cada servicio</span></div>
+  <h2 class="h-lg">Configurado alrededor de tu servicio. No al contrario.</h2>
+  <p class="lede lede-dark">Elige una especialidad para ver cómo cambian las reglas y la forma del cuadrante.</p>
+
+  <div class="depts">
+    <div class="dept-list" id="deptList" role="tablist" aria-label="Especialidades"></div>
+    <div class="dept-rules">
+      <div class="panel-label">Reglas del servicio</div>
+      <div class="dept-rule-items" id="deptRules"></div>
+      <div class="panel-foot">Reglas de ejemplo — las de tu servicio se recogen en la implantación.</div>
+    </div>
+    <div class="dept-quadrant">
+      <div class="panel-head"><span class="panel-label">Cuadrante</span><span class="panel-label" id="deptName"></span></div>
+      <div id="deptQuadrant"></div>
+      <div class="status-note status-note-dark"><span class="status-dot status-dot-light"></span>Sin conflictos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 05 · EL SISTEMA ══════════════ -->
+<section class="sec" id="producto">
+  <div class="kicker"><span>05</span><span>El sistema</span></div>
+  <h2 class="h-lg">Y solo entonces, la pantalla.</h2>
+  <p class="lede">Un mes se genera en segundos. Se revisa, se ajusta a mano donde haga falta y se publica.</p>
+
+  <div class="shots">
+    <figure>
+      <div class="blueprint shot" style="aspect-ratio:1/1">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <picture><source srcset="assets/cuadrante.webp" type="image/webp"><img src="assets/cuadrante.png" alt="Captura del cuadrante mensual de guardias generado por Heliox" loading="lazy"></picture>
       </div>
-      <div class="cost-stats">
-        <div class="stat reveal"><span class="stat-num">10–20&nbsp;h</span><span class="stat-label">al mes dedicadas a cuadrar guardias en muchos servicios</span></div>
-        <div class="stat reveal"><span class="stat-num">1&nbsp;error</span><span class="stat-label">basta para incumplir un descanso o doblar una guardia</span></div>
-        <div class="stat reveal"><span class="stat-num">12&nbsp;veces</span><span class="stat-label">al año se repite el mismo proceso, desde cero</span></div>
+      <figcaption>01 · Cuadrante mensual</figcaption>
+    </figure>
+    <figure>
+      <div class="blueprint shot" style="aspect-ratio:2.47/1">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <picture><source srcset="assets/reglas.webp" type="image/webp"><img src="assets/reglas.png" alt="Captura del editor de reglas del servicio" loading="lazy"></picture>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 5 · LA SOLUCIÓN ══════════════ -->
-<section class="solution">
-  <div class="container narrow">
-    <div class="section-head reveal">
-      <p class="eyebrow">La solución</p>
-      <h2>Un sistema que se adapta a tu servicio.<br>No al revés.</h2>
-      <p class="section-lede">Heliox no es un programa que instalas y al que te amoldas. Es un sistema que construimos alrededor de tu servicio: aprende vuestras reglas, restricciones y preferencias, y genera una planificación que las cumple todas. Tú revisas. Tú decides. Él calcula.</p>
-    </div>
-    <div class="solution-points">
-      <div class="point reveal"><span class="point-num">01</span><p><strong>Todas las reglas, siempre.</strong> Lo que a mano es imposible de vigilar, el sistema lo comprueba en cada versión del calendario.</p></div>
-      <div class="point reveal"><span class="point-num">02</span><p><strong>Equidad demostrable.</strong> El reparto de guardias, festivos y fines de semana queda equilibrado y a la vista de todos.</p></div>
-      <div class="point reveal"><span class="point-num">03</span><p><strong>Cambios sin dolor.</strong> Una baja o un imprevisto ya no significa rehacer el mes: el sistema recalcula respetando todo lo demás.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 6 · CÓMO FUNCIONA ══════════════ -->
-<section class="how section-alt" id="como-funciona">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Cómo funciona</p>
-      <h2>Tres pasos. Cero fricción.</h2>
-    </div>
-    <ol class="steps">
-      <li class="step reveal">
-        <span class="step-num">1</span>
-        <h3>Escuchamos tu servicio</h3>
-        <p>Nos sentamos contigo y recogemos cómo funcionan vuestras guardias: número de residentes y adjuntos, rotaciones, descansos, normas internas, excepciones. Todo lo que hoy vive en tu cabeza y en tu Excel.</p>
-      </li>
-      <li class="step reveal">
-        <span class="step-num">2</span>
-        <h3>Construimos tu sistema</h3>
-        <p>Modelamos esas reglas en una implementación exclusiva para tu servicio. No adaptamos una plantilla: construimos el sistema alrededor de vuestra forma de trabajar.</p>
-      </li>
-      <li class="step reveal">
-        <span class="step-num">3</span>
-        <h3>Generas y ajustas en minutos</h3>
-        <p>Cada mes, el calendario se genera solo: completo, equilibrado y con los descansos garantizados. ¿Un imprevisto? Se recalcula al momento, sin deshacer el resto.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ══════════════ 7 · BENEFICIOS ══════════════ -->
-<section class="benefits" id="beneficios">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Lo que ganas</p>
-      <h2>Menos gestión.<br>Más medicina.</h2>
-    </div>
-    <div class="benefit-grid">
-      <div class="benefit reveal"><h3>Tiempo recuperado</h3><p>Las horas de cada mes dedicadas al calendario vuelven a ser tuyas. Para pacientes, docencia o descanso.</p></div>
-      <div class="benefit reveal"><h3>Descansos garantizados</h3><p>Las libranzas y los límites de guardias dejan de depender de la memoria de una persona.</p></div>
-      <div class="benefit reveal"><h3>Reparto justo</h3><p>Festivos, fines de semana y noches se equilibran de forma objetiva. Se acabaron las cuentas mentales.</p></div>
-      <div class="benefit reveal"><h3>Menos errores</h3><p>Nada de solapamientos, huecos sin cubrir ni reglas olvidadas. El sistema verifica lo que un humano no puede.</p></div>
-      <div class="benefit reveal"><h3>Cambios en un minuto</h3><p>Bajas, congresos, permisos. Modificar el calendario deja de ser rehacerlo.</p></div>
-      <div class="benefit reveal"><h3>Paz en el servicio</h3><p>Cuando el reparto es transparente y justo, los conflictos se desactivan solos.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 8 · DIFERENCIACIÓN ══════════════ -->
-<section class="diff section-alt" id="personalizacion">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">La diferencia</p>
-      <h2>No es un software genérico.<br>Es <em class="serif-em">tu</em> sistema.</h2>
-      <p class="section-lede">Cada hospital trabaja distinto. Cada especialidad organiza sus guardias a su manera. Por eso no vendemos licencias de un producto estándar: construimos una implementación a medida para cada servicio.</p>
-    </div>
-    <div class="compare reveal">
-      <div class="compare-col compare-generic">
-        <h3>Un software genérico</h3>
-        <ul>
-          <li>Te obliga a adaptar tus reglas a sus opciones</li>
-          <li>Las excepciones se gestionan «a mano, aparte»</li>
-          <li>Configuración estándar para todos los clientes</li>
-          <li>Si tu servicio es peculiar, es tu problema</li>
-        </ul>
+      <figcaption>02 · Reglas del servicio</figcaption>
+    </figure>
+    <figure>
+      <div class="blueprint shot" style="aspect-ratio:1.58/1">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <picture><source srcset="assets/movil.webp" type="image/webp"><img src="assets/movil.png" alt="Captura de la consulta de guardias" loading="lazy"></picture>
       </div>
-      <div class="compare-col compare-heliox">
-        <h3>Heliox Intelligence</h3>
-        <ul>
-          <li>Se construye alrededor de tus reglas, todas</li>
-          <li>Las excepciones son parte del sistema, no un parche</li>
-          <li>Una implementación exclusiva por servicio</li>
-          <li>Cuanto más peculiar tu servicio, más valor aportamos</li>
-        </ul>
-      </div>
-    </div>
+      <figcaption>03 · Consulta de guardias</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- ══════════════ 9 · EJEMPLOS DE PERSONALIZACIÓN ══════════════ -->
-<section class="rules">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Personalización real</p>
-      <h2>Vuestras reglas, tal y como las diríais en una sesión.</h2>
-      <p class="section-lede">Estas son el tipo de reglas que el sistema aprende y respeta en cada calendario. Si podéis explicarla, podemos modelarla.</p>
-    </div>
-    <div class="rule-cloud reveal">
-      <span class="rule-chip">«Ningún R1 hace guardia sin un R mayor»</span>
-      <span class="rule-chip">«Libranza postguardia, siempre»</span>
-      <span class="rule-chip">«Máximo cinco guardias al mes»</span>
-      <span class="rule-chip">«En Navidad, reparto rotatorio entre años»</span>
-      <span class="rule-chip">«Quien rota fuera, no entra en el calendario»</span>
-      <span class="rule-chip">«No repetir fin de semana dos meses seguidos»</span>
-      <span class="rule-chip">«Los martes de docencia, sin saliente»</span>
-      <span class="rule-chip">«Vacaciones y congresos, bloqueados de serie»</span>
-      <span class="rule-chip">«Preferencias personales, cuando el reparto lo permite»</span>
-      <span class="rule-chip">«Dos niveles de guardia: puerta y planta»</span>
-    </div>
+<!-- ══════════════ 06 · LO QUE DEVUELVE ══════════════ -->
+<section class="sec split-wide">
+  <div>
+    <div class="kicker"><span>06</span><span>Lo que devuelve</span></div>
+    <h2 class="h-lg">Más medicina. Menos calendario.</h2>
+    <p class="lede">El tiempo que hoy se va en cuadrar un mes vuelve al servicio. Y con él, la tranquilidad de que está bien hecho.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">5–8 <span>h</span></div><div class="stat-label">Horas de gestión al mes, hoy</div></div>
+    <div class="stat"><div class="stat-num stat-accent">5 <span>min</span></div><div class="stat-label">Con Heliox</div></div>
+    <div class="stat"><div class="stat-num">100 <span>%</span></div><div class="stat-label">Conflictos detectados antes de publicar</div></div>
+    <div class="stat"><div class="stat-num">1×</div><div class="stat-label">Las reglas se escriben una vez</div></div>
   </div>
 </section>
 
-<!-- ══════════════ 10 · POR QUÉ HELIOX ══════════════ -->
-<section class="why section-dark">
-  <div class="container narrow">
-    <p class="eyebrow eyebrow-light reveal">Por qué Heliox Intelligence</p>
-    <h2 class="why-title reveal">Sabemos lo que es salir de una guardia<br>y ponerse a cuadrar la siguiente.</h2>
-    <p class="why-text reveal">Heliox Intelligence nació dentro de un hospital, no en una oficina. Somos médicos que vivimos este problema cada mes y decidimos resolverlo con la seriedad que merece: con tecnología a la altura del trabajo clínico. No hacemos apps. Construimos sistemas en los que un servicio puede confiar.</p>
-    <div class="why-values reveal">
-      <span>Rigor clínico</span>
-      <span class="dot dot-light" aria-hidden="true"></span>
-      <span>Ingeniería seria</span>
-      <span class="dot dot-light" aria-hidden="true"></span>
-      <span>Trato de igual a igual</span>
-    </div>
-  </div>
+<!-- ══════════════ 07 · QUIÉN LO HACE ══════════════ -->
+<section class="sec">
+  <div class="kicker"><span>07</span><span>Quién lo hace</span></div>
+  <h2 class="h-md">Desarrollado por médicos que llevaban años cuadrando guardias a mano.</h2>
+  <p class="lede">Sabemos qué se rompe cuando el sistema no entiende un servicio. Por eso Heliox se configura antes de usarse, con el equipo, en su propio lenguaje.</p>
 </section>
 
-<!-- ══════════════ 11 · CASOS DE USO ══════════════ -->
-<section class="cases">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Para quién</p>
-      <h2>Cada rol gana algo distinto.<br>Todos ganan tiempo.</h2>
-    </div>
-    <div class="case-grid">
-      <div class="case reveal"><h3>Para quien organiza el calendario</h3><p>Deja de ser la persona del Excel. Pasa de construir el calendario a supervisarlo.</p></div>
-      <div class="case reveal"><h3>Para los residentes</h3><p>Un reparto justo y transparente, con descansos respetados y preferencias tenidas en cuenta.</p></div>
-      <div class="case reveal"><h3>Para tutores y coordinadores docentes</h3><p>Guardias compatibles con rotaciones y docencia, sin vigilarlo manualmente cada mes.</p></div>
-      <div class="case reveal"><h3>Para jefes de servicio</h3><p>Cobertura garantizada, normativa cumplida y un servicio con menos fricción interna.</p></div>
-      <div class="case reveal"><h3>Para direcciones médicas</h3><p>Trazabilidad, cumplimiento de descansos y una gestión profesionalizada de las guardias.</p></div>
-    </div>
+<!-- ══════════════ CONTACTO ══════════════ -->
+<section class="split" id="contacto">
+  <div class="split-copy">
+    <h2 class="h-xl">Hablemos de tu servicio.</h2>
+    <p class="lede">Cuéntanos cómo organizáis las guardias hoy. Respondemos con una propuesta concreta, sin demostración genérica.</p>
+    <div class="note contact-note">Respuesta en 48 horas laborables</div>
   </div>
-</section>
-
-<!-- ══════════════ 12 · TESTIMONIOS ══════════════ -->
-<section class="quotes section-alt">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Lo que queremos que digas dentro de tres meses</p>
-      <h2>Así suena un servicio sin Excel.</h2>
-      <p class="disclaimer">Testimonios ilustrativos. Reflejan el resultado que diseñamos en cada implementación, no clientes reales.</p>
+  <div class="split-panel">
+    <div class="blueprint form-success" id="formSuccess" hidden>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="status-note"><span class="status-dot"></span>Recibido</div>
+      <h3 id="successTitle">Gracias.</h3>
+      <p id="successText">Te escribimos con los siguientes pasos.</p>
+      <button type="button" class="link-btn" id="resetBtn">Enviar otro mensaje</button>
     </div>
-    <div class="quote-grid">
-      <blockquote class="quote reveal"><p>«Antes perdía dos tardes al mes con el calendario. Ahora lo reviso en diez minutos con un café.»</p><footer>Jefa de residentes · Ejemplo ilustrativo</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Lo que más ha cambiado no es el tiempo. Es que ya nadie discute el reparto.»</p><footer>Jefe de servicio · Ejemplo ilustrativo</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Pedí un cambio por un congreso y estaba resuelto antes de terminar de escribir el mensaje.»</p><footer>Residente de tercer año · Ejemplo ilustrativo</footer></blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 13 · FAQ ══════════════ -->
-<section class="faq" id="faq">
-  <div class="container narrow">
-    <div class="section-head reveal">
-      <p class="eyebrow">Preguntas frecuentes</p>
-      <h2>Lo que nos preguntan antes de la demo.</h2>
-    </div>
-    <div class="faq-list reveal">
-      <details class="faq-item">
-        <summary>Mi servicio tiene reglas muy peculiares. ¿De verdad podéis con ellas?</summary>
-        <p>Sí. Es exactamente para eso para lo que existe Heliox. No partimos de una plantilla: modelamos vuestras reglas una a una, incluidas las excepciones que «solo pasan aquí». Cuanto más complejo el servicio, más se nota la diferencia.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Cuánto trabajo nos supone la puesta en marcha?</summary>
-        <p>Unas pocas conversaciones. Vosotros nos contáis cómo funcionan vuestras guardias —como se lo contaríais a un residente nuevo— y nosotros hacemos el resto. No hay que rellenar formularios interminables ni migrar sistemas.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Quién tiene la última palabra sobre el calendario?</summary>
-        <p>Siempre vosotros. El sistema propone una planificación que cumple todas las reglas; la persona responsable la revisa, la ajusta si quiere y la aprueba. Heliox calcula. Tú decides.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Qué pasa cuando hay una baja o un imprevisto?</summary>
-        <p>Se lo indicas al sistema y recalcula el calendario respetando descansos, equilibrio y el resto de reglas. Lo que antes era rehacer el mes ahora es un ajuste de un minuto.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Cómo tratáis los datos del servicio?</summary>
-        <p>Con el mismo rigor que exige el entorno sanitario. El sistema trabaja con datos de planificación —nombres, turnos, restricciones—, nunca con datos clínicos de pacientes, y cada implementación se acuerda con el hospital.</p>
-      </details>
-      <details class="faq-item">
-        <summary>¿Cuánto cuesta?</summary>
-        <p>Cada implementación es a medida, así que el precio también lo es. En la demostración analizamos vuestro caso y os damos una propuesta concreta, sin compromiso.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 14 · CTA FINAL ══════════════ -->
-<section class="cta-final section-dark" id="demo">
-  <div class="container narrow">
-    <p class="eyebrow eyebrow-light reveal">El siguiente paso</p>
-    <h2 class="cta-title reveal">Haz que el próximo calendario<br>sea el último que construyas a mano.</h2>
-    <p class="cta-lede reveal">Cuéntanos cómo funciona tu servicio. En 30 minutos te enseñamos qué aspecto tendría Heliox trabajando para vosotros.</p>
-    <form class="demo-form reveal" id="demoForm" action="https://formsubmit.co/28vegaraul@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Nueva solicitud de demostración — Heliox">
+    <form id="demoForm" action="https://formsubmit.co/28vegaraul@gmail.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="Nueva solicitud — Heliox Intelligence">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="variante_hero" value="A" id="variantField">
+      <input type="hidden" name="servicio" id="servicioField" value="">
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey">
-      <div class="form-row">
-        <label>Nombre<input type="text" name="nombre" autocomplete="name" required placeholder="Dra. Ana García"></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required placeholder="ana.garcia@hospital.es"></label>
+      <div class="field field-full">
+        <label for="hx-nombre">Nombre</label>
+        <input id="hx-nombre" name="nombre" type="text" autocomplete="name">
       </div>
-      <div class="form-row">
-        <label>Hospital y servicio<input type="text" name="servicio" required placeholder="Hospital Universitario · Medicina Interna"></label>
+      <div class="field">
+        <label for="hx-email">Correo</label>
+        <input id="hx-email" name="email" type="email" autocomplete="email">
       </div>
-      <div class="form-row">
-        <label>Cuéntanos vuestro caso <span class="optional">(opcional)</span><textarea name="mensaje" rows="3" placeholder="Somos 18 residentes y 24 adjuntos, con dos niveles de guardia…"></textarea></label>
+      <div class="field">
+        <label for="hx-hospital">Hospital</label>
+        <input id="hx-hospital" name="hospital" type="text" autocomplete="organization">
       </div>
-      <button class="btn btn-primary btn-lg btn-block" type="submit">Solicitar una demostración</button>
-      <p class="microcopy microcopy-light">Sin compromiso. Sin instalar nada. Respondemos en menos de 24&nbsp;horas.</p>
-      <p class="form-error" id="formError" hidden>No hemos podido enviar la solicitud. Inténtalo de nuevo o escríbenos directamente a <a href="mailto:28vegaraul@gmail.com">nuestro correo</a>.</p>
+      <div class="field-full">
+        <span class="field-label">Servicio</span>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="field field-full">
+        <label for="hx-msg">Cuéntanos tu caso</label>
+        <textarea id="hx-msg" name="mensaje" rows="3"></textarea>
+      </div>
+      <div class="form-actions field-full">
+        <button type="submit" class="btn-solid" id="submitBtn">Enviar</button>
+        <span class="form-hint" id="formHint">No compartimos tus datos con terceros.</span>
+      </div>
     </form>
-    <div class="form-success" id="formSuccess" hidden>
-      <p class="form-success-title">Solicitud recibida. ✓</p>
-      <p>Te escribimos en menos de 24&nbsp;horas para agendar la demostración. Mientras tanto, ve pensando en la regla más rara de tu servicio: nos encantan los retos.</p>
-    </div>
   </div>
 </section>
 
 </main>
 
 <!-- ══════════════ FOOTER ══════════════ -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="brand-mark" aria-hidden="true">H</span>
-      <div>
-        <span class="brand-name">Heliox <em>Intelligence</em></span>
-        <p>Tecnología creada por médicos para la práctica clínica real.</p>
-      </div>
-    </div>
-    <div class="footer-links">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#faq">Preguntas frecuentes</a>
-      <a href="mailto:hola@helioxintelligence.com">hola@helioxintelligence.com</a>
-    </div>
+<footer class="site-foot">
+  <div class="logo logo-foot">
+    <span class="logo-mark" aria-hidden="true"><span></span></span>
+    <span class="logo-sub">Heliox Intelligence</span>
   </div>
-  <div class="container footer-legal">
-    <span>© 2026 Heliox Intelligence</span>
-    <span>Hecho con criterio clínico.</span>
+  <div class="foot-links">
+    <a href="#top">Privacidad</a>
+    <a href="#top">Aviso legal</a>
+    <a href="#contacto">Contacto</a>
   </div>
 </footer>
+
+</div>
 
 <script src="script.js" defer></script>
 </body>

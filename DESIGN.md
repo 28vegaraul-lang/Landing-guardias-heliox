@@ -1,7 +1,18 @@
 # Heliox Intelligence — Estrategia de landing, copy y CRO
 
-Documento de diseño que acompaña a `index.html`. Recoge las decisiones de copy,
-diseño y psicología de conversión, y las alternativas de hero para test A/B.
+Documento de diseño que acompaña a `index.html`.
+
+> **Actualización (30-07-2026):** la dirección visual y el copy fueron
+> rediseñados en Claude Design (proyecto «Tres direcciones de hero») sobre el
+> sistema **Industry**: Barlow Condensed + Barlow, papel `#f7f6f3`, tinta
+> `#1d1f20`, azul acero `#5980a6/#1d2d3d`, marcos blueprint con marcas de
+> registro y bloques de cuadrante animados. `index.html` implementa ese diseño
+> (archivo fuente: `Heliox Landing.dc.html` del proyecto de Claude Design).
+> El hero quedó fijado en «La última guardia que harás a mano», por lo que el
+> test A/B/C de heros descrito más abajo se retiró del código; las secciones
+> 1–3 de este documento describen la primera iteración y se conservan como
+> registro. Sigue vigente: FormSubmit, capa de analítica y el planteamiento
+> CRO general.
 
 ---
 

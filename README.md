@@ -5,14 +5,15 @@ hospitalarias de Heliox Intelligence. Objetivo único: solicitudes de demostraci
 
 ## Estructura
 
-- `index.html` — página completa (hero, imagina, problema, coste oculto,
-  solución, cómo funciona, beneficios, diferenciación, personalización,
-  por qué Heliox, casos de uso, testimonios ilustrativos, FAQ, CTA final)
-- `styles.css` — sistema de diseño (minimalismo clínico premium)
-- `script.js` — animación del calendario del hero, reveals al scroll, FAQ,
-  envío del formulario (FormSubmit), analítica de eventos y test A/B/C del hero
-- `DESIGN.md` — estrategia de copy, propuestas de hero alternativas,
-  wireframe y justificación CRO sección a sección
+- `index.html` — página completa según el diseño de Claude Design (sistema
+  «Industry»): hero, punto de partida, reglas, reparto, selector interactivo
+  de especialidades, capturas del sistema, métricas, equipo y contacto
+- `styles.css` — tokens y componentes del sistema Industry (Barlow Condensed
+  + Barlow, papel/tinta/acero, marcos blueprint)
+- `script.js` — animaciones al scroll, selector de servicios, validación y
+  envío del formulario (FormSubmit) y analítica de eventos
+- `assets/` — capturas del producto optimizadas (webp + png)
+- `DESIGN.md` — estrategia de copy y CRO, e historial de la iteración previa
 
 ## Uso
 
