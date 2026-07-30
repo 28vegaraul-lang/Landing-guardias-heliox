@@ -135,13 +135,35 @@ Decisiones CRO transversales:
   coherente con el posicionamiento de solución hecha a medida (y convierte la
   curiosidad por el precio en motivo para reservar la llamada).
 
-## 5 · Pendientes para producción
+## 5 · Estado de producción
 
-- Sustituir el `action` mailto del formulario por un endpoint real
-  (Formspree, backend propio o CRM) y añadir página de gracias con
-  seguimiento de conversión.
-- Analítica de eventos: clic en CTA hero vs. nav vs. final, profundidad de
-  scroll, apertura de FAQs.
-- Test A/B de los heros B y C contra el A.
-- Dominio y correo reales (se usa `hola@helioxintelligence.com` como
-  placeholder).
+Ya implementado en el código:
+
+- **Formulario real**: envío AJAX a FormSubmit (sin backend propio), con
+  honeypot antispam, estado de éxito integrado (sin abandonar la página),
+  estado de error con vía de contacto alternativa y evento de conversión
+  `demo_request`. Fallback sin JavaScript: POST estándar a FormSubmit.
+- **Analítica de eventos**: `page_view`, `cta_click` (con ubicación),
+  `scroll_depth` (25/50/75/100), `faq_open` (con pregunta), `demo_request` y
+  `demo_request_error`. Todos los eventos incluyen la variante de hero. Los
+  eventos se acumulan en `window.dataLayer`; para enviarlos a una
+  herramienta basta rellenar `GA4_ID` o `PLAUSIBLE_DOMAIN` al inicio de
+  `script.js`.
+- **Test A/B/C del hero**: asignación aleatoria persistente por visitante
+  (localStorage), variante incluida en cada evento y en el propio lead
+  (campo `variante_hero`). Forzable para revisión con `?v=A`, `?v=B`, `?v=C`.
+
+Pendiente (requiere acción humana):
+
+1. **Activar FormSubmit**: el primer envío real dispara un correo de
+   confirmación a la dirección receptora; hay que pulsar el enlace de
+   activación una vez. Tras activar, FormSubmit ofrece un alias aleatorio —
+   conviene sustituir el email visible en `index.html` por ese alias para no
+   exponerlo a scrapers.
+2. **Correo y dominio corporativos**: los envíos llegan de momento a
+   `28vegaraul@gmail.com`; cambiar por el buzón real cuando exista (una
+   línea en `index.html`).
+3. **Cuenta de analítica**: crear la propiedad GA4 o el sitio en Plausible y
+   pegar el ID/dominio en la cabecera de `script.js`.
+4. **Publicación**: activar GitHub Pages (Settings → Pages → deploy from
+   branch) o conectar el repo a Vercel/Netlify.

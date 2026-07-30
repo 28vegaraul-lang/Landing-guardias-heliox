@@ -37,8 +37,8 @@
   <div class="container hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">Creado por médicos, para médicos</p>
-      <h1>Las guardias,<br><span class="accent">resueltas.</span></h1>
-      <p class="lede">Un sistema que aprende las reglas de tu servicio —todas— y construye el calendario de guardias por ti. Justo, completo y sin conflictos. En minutos, no en tardes.</p>
+      <h1 id="heroTitle">Las guardias,<br><span class="accent">resueltas.</span></h1>
+      <p class="lede" id="heroLede">Un sistema que aprende las reglas de tu servicio —todas— y construye el calendario de guardias por ti. Justo, completo y sin conflictos. En minutos, no en tardes.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="#demo">Solicitar una demostración</a>
         <a class="btn btn-ghost btn-lg" href="#como-funciona">Ver cómo funciona</a>
@@ -333,7 +333,12 @@
     <p class="eyebrow eyebrow-light reveal">El siguiente paso</p>
     <h2 class="cta-title reveal">Haz que el próximo calendario<br>sea el último que construyas a mano.</h2>
     <p class="cta-lede reveal">Cuéntanos cómo funciona tu servicio. En 30 minutos te enseñamos qué aspecto tendría Heliox trabajando para vosotros.</p>
-    <form class="demo-form reveal" id="demoForm" action="mailto:hola@helioxintelligence.com" method="post" enctype="text/plain">
+    <form class="demo-form reveal" id="demoForm" action="https://formsubmit.co/28vegaraul@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nueva solicitud de demostración — Heliox">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="variante_hero" value="A" id="variantField">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey">
       <div class="form-row">
         <label>Nombre<input type="text" name="nombre" autocomplete="name" required placeholder="Dra. Ana García"></label>
         <label>Email<input type="email" name="email" autocomplete="email" required placeholder="ana.garcia@hospital.es"></label>
@@ -346,7 +351,12 @@
       </div>
       <button class="btn btn-primary btn-lg btn-block" type="submit">Solicitar una demostración</button>
       <p class="microcopy microcopy-light">Sin compromiso. Sin instalar nada. Respondemos en menos de 24&nbsp;horas.</p>
+      <p class="form-error" id="formError" hidden>No hemos podido enviar la solicitud. Inténtalo de nuevo o escríbenos directamente a <a href="mailto:28vegaraul@gmail.com">nuestro correo</a>.</p>
     </form>
+    <div class="form-success" id="formSuccess" hidden>
+      <p class="form-success-title">Solicitud recibida. ✓</p>
+      <p>Te escribimos en menos de 24&nbsp;horas para agendar la demostración. Mientras tanto, ve pensando en la regla más rara de tu servicio: nos encantan los retos.</p>
+    </div>
   </div>
 </section>
 
