@@ -1,0 +1,147 @@
+# Heliox Intelligence — Estrategia de landing, copy y CRO
+
+Documento de diseño que acompaña a `index.html`. Recoge las decisiones de copy,
+diseño y psicología de conversión, y las alternativas de hero para test A/B.
+
+---
+
+## 1 · Propuestas de hero
+
+El hero no habla del producto: habla del futuro que el visitante desea.
+Tres propuestas, ordenadas por recomendación:
+
+### Hero A — *implementado* — «Declaración Apple»
+> **Las guardias, resueltas.**
+>
+> Un sistema que aprende las reglas de tu servicio —todas— y construye el
+> calendario de guardias por ti. Justo, completo y sin conflictos.
+> En minutos, no en tardes.
+
+Por qué funciona: dos palabras que condensan la transformación completa. El
+punto final transmite rotundidad («esto ya está solucionado»). El subheadline
+carga toda la explicación, con el inciso «—todas—» atacando la objeción nº 1
+(«mi servicio es demasiado peculiar»). «En minutos, no en tardes» ancla el
+contraste temporal (anclaje + aversión a la pérdida).
+
+### Hero B — «Futuro imaginado»
+> **Imagina no volver a cuadrar una guardia.**
+>
+> Heliox aprende cómo funciona tu servicio y genera cada mes un calendario
+> justo, completo y con los descansos garantizados. Tú solo lo revisas.
+
+Por qué funciona: el imperativo «imagina» activa simulación mental (el lector
+se proyecta en el resultado antes de saber qué es el producto). Ideal si el
+tráfico llega frío desde redes.
+
+### Hero C — «La última vez»
+> **Haz que el próximo calendario sea el último que construyas a mano.**
+>
+> Creado por médicos, Heliox convierte las reglas de tu servicio en una
+> planificación automática, equilibrada y sin conflictos.
+
+Por qué funciona: urgencia sin presión — sitúa la decisión en el siguiente
+ciclo mensual, que es exactamente cuando el dolor vuelve. Buen candidato para
+campañas de email a jefes de residentes a final de mes.
+
+---
+
+## 2 · Wireframe y jerarquía visual
+
+```
+┌──────────────────────────────────────────────┐
+│ NAV sticky: logo · anclas · [CTA]            │  siempre visible, blur
+├──────────────────────────────────────────────┤
+│ HERO  ┌ copy (55%) ┐  ┌ calendario (45%) ┐   │  Z-pattern
+│       │ eyebrow    │  │ animación caos→  │   │
+│       │ H1 · sub   │  │ orden + checks   │   │
+│       │ CTA + CTA2 │  └──────────────────┘   │
+├──────────────────────────────────────────────┤
+│ FRANJA de confianza (3 claims, hairlines)    │
+├──────────────────────────────────────────────┤
+│ IMAGINA — fondo oscuro, serif grande         │  pausa emocional
+├──────────────────────────────────────────────┤
+│ PROBLEMA — grid 3×2 de dolores               │
+│ COSTE OCULTO — copy + 3 stats (fondo alt)    │
+│ SOLUCIÓN — 3 puntos numerados                │
+│ CÓMO FUNCIONA — 3 pasos (fondo alt)          │
+│ BENEFICIOS — grid 3×2                        │
+│ DIFERENCIACIÓN — comparativa claro/oscuro    │
+│ PERSONALIZACIÓN — nube de reglas en serif    │
+│ POR QUÉ HELIOX — fondo oscuro, manifiesto    │
+│ CASOS DE USO — 5 cards por rol               │
+│ TESTIMONIOS — 3 quotes (marcados ejemplo)    │
+│ FAQ — acordeón, 6 objeciones                 │
+├──────────────────────────────────────────────┤
+│ CTA FINAL — fondo oscuro, headline + form    │  clímax
+├──────────────────────────────────────────────┤
+│ FOOTER mínimo                                │
+└──────────────────────────────────────────────┘
+```
+
+Ritmo visual: blanco → oscuro → blanco → gris → … Las tres secciones oscuras
+(Imagina, Por qué Heliox, CTA final) son los tres picos emocionales de la
+página; el ojo las lee como «momentos importantes».
+
+## 3 · Sistema visual
+
+- **Paleta**: tinta `#0B1220`, fondo `#FFFFFF` / `#F6F7F9`, acento único
+  `#2E5CE6`. El acento se reserva para CTA, datos y micro-señales: la escasez
+  del color dirige la mirada hacia la acción.
+- **Tipografía**: Instrument Sans (UI, titulares) + Instrument Serif (momentos
+  emocionales: «Imagina», reglas personalizadas, citas). El cambio a serif
+  marca «aquí habla un humano, no un software».
+- **Imágenes**: ninguna fotografía de stock. El único visual es el calendario
+  animado del hero — el producto demostrándose a sí mismo. Anti-patrón evitado:
+  médicos sonrientes con tablet.
+- **Iconografía**: casi ausente; hairlines, números serif y guiones hacen el
+  trabajo. Menos elementos = más percepción premium.
+- **Motion**: reveals de 600 ms con ease-out y stagger de 60 ms; animación del
+  hero en 3 actos (celdas → asignación → verificaciones);
+  `prefers-reduced-motion` desactiva todo.
+
+## 4 · Justificación CRO sección a sección
+
+| Sección | Emoción buscada | Objeción que elimina | Sesgo / principio |
+|---|---|---|---|
+| Hero | Alivio anticipado | «Otra app más» — no: resultado | Anclaje («minutos, no tardes»), fluency |
+| Franja confianza | Identificación | «No conocen mi realidad» | Similitud / in-group («ese Excel») |
+| Imagina | Deseo | — (abre el gap emocional) | Simulación mental, prospección |
+| Problema | Reconocimiento («son ellos, me entienden») | «No entenderán mi caso» | Efecto espejo, PAS-Problema |
+| Coste oculto | Incomodidad productiva | «Puedo seguir como hasta ahora» | Aversión a la pérdida, coste de oportunidad, PAS-Agitate |
+| Solución | Confianza + control | «La IA decidirá por mí» → «Tú decides. Él calcula.» | Autonomía percibida, PAS-Solve |
+| Cómo funciona | Sensación de facilidad | «Será un proyecto enorme de implantar» | Reducción de fricción percibida, chunking (3 pasos) |
+| Beneficios | Proyección del beneficio | «¿Qué gano yo exactamente?» | JTBD: se venden resultados, no features |
+| Diferenciación | Superioridad de la elección | «Ya existen programas de turnos» | Contraste, categoría propia («no es software, es tu sistema») |
+| Personalización | Sorpresa («¡esa regla es la nuestra!») | «Nuestras reglas son inmodelables» | Concreción > abstracción, prueba por ejemplo |
+| Por qué Heliox | Confianza en las personas | «¿Quiénes son estos?» | Autoridad + similitud (médicos), storytelling de origen |
+| Casos de uso | Relevancia personal | «Esto es para el jefe, no para mí» | Segmentación por rol, efecto cóctel |
+| Testimonios | Deseo social | «¿Funcionará de verdad?» | Prueba social prospectiva — honesta: marcados como ejemplo |
+| FAQ | Tranquilidad final | Datos, precio, control, esfuerzo | Cierre de bucles abiertos (Zeigarnik) |
+| CTA final | Determinación | «¿Y ahora qué hago?» | Un solo siguiente paso, compromiso mínimo (30 min, sin compromiso) |
+
+Decisiones CRO transversales:
+
+- **Un único objetivo de conversión** (demo). El CTA se repite idéntico en
+  nav, hero y cierre: consistencia verbal = menor carga cognitiva.
+- **Microcopy bajo cada CTA** («30 minutos. Sin compromiso.») reduce el riesgo
+  percibido justo en el momento de la decisión.
+- **Formulario de 3 campos + 1 opcional**: cada campo extra cuesta conversión;
+  el textarea opcional con placeholder realista («Somos 18 residentes…»)
+  cualifica el lead sin exigir esfuerzo.
+- **Testimonios honestos**: al marcarlos como ilustrativos se protege la
+  credibilidad ante una audiencia médica escéptica — mentir aquí destruiría
+  toda la página.
+- **Sin precio en la página**: el precio a medida se difiere a la demo, que es
+  coherente con el posicionamiento de solución hecha a medida (y convierte la
+  curiosidad por el precio en motivo para reservar la llamada).
+
+## 5 · Pendientes para producción
+
+- Sustituir el `action` mailto del formulario por un endpoint real
+  (Formspree, backend propio o CRM) y añadir página de gracias con
+  seguimiento de conversión.
+- Analítica de eventos: clic en CTA hero vs. nav vs. final, profundidad de
+  scroll, apertura de FAQs.
+- Test A/B de los heros B y C contra el A.
+- Dominio y correo reales (se usa `hola@helioxintelligence.com` como
+  placeholder).
