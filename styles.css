@@ -91,7 +91,7 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; margin: 0; }
 .logo-mark { width: 15px; height: 15px; border: 1.5px solid var(--navy); position: relative; display: block; flex: none; }
 .logo-mark span { position: absolute; left: 3px; top: 3px; width: 7px; height: 7px; background: var(--navy); display: block; }
 .logo-name { font-family: var(--font-heading); font-weight: 600; font-size: 19px; letter-spacing: .1em; text-transform: uppercase; }
-.logo-sub { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(29, 31, 32, .45); }
+.logo-sub { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(29, 31, 32, .45); align-self: flex-end; padding-bottom: 2px; }
 .site-nav { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 34px); font-size: 12.5px; letter-spacing: .09em; text-transform: uppercase; }
 .site-nav a { color: rgba(29, 31, 32, .62); }
 .site-nav a:hover { color: var(--ink); }
@@ -301,7 +301,6 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; margin: 0; }
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .site-head { padding: 14px 20px; gap: 12px; }
-  .logo-sub { display: none; }
   .site-nav { gap: 14px; }
   .site-nav a:not(.nav-cta) { display: none; }
   :root { --pad-x: 20px; }
