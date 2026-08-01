@@ -301,6 +301,10 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; margin: 0; }
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .site-head { padding: 14px 20px; gap: 12px; }
+  .logo { gap: 8px; }
+  .logo-name { font-size: 14.5px; }
+  .logo-sub { font-size: 9px; padding-bottom: 1px; }
+  .site-nav .nav-cta { padding: 7px 12px; }
   .site-nav { gap: 14px; }
   .site-nav a:not(.nav-cta) { display: none; }
   :root { --pad-x: 20px; }
