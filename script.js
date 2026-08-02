@@ -264,7 +264,27 @@
           submitBtn.textContent = "Enviar";
         });
     });
+  }
 
+  /* ═══════════ Vídeo promocional ═══════════
+     Vídeo autoalojado: la portada se retira al pulsar y aparecen
+     los controles nativos del navegador. */
+  var videoFrame = document.getElementById("videoFrame");
+  if (videoFrame) {
+    var promoVideo = document.getElementById("promoVideo");
+    var videoCover = videoFrame.querySelector(".video-cover");
+    videoCover.addEventListener("click", function () {
+      videoCover.classList.add("hide");
+      promoVideo.controls = true;
+      promoVideo.play();
+      track("video_play", {});
+    });
+    promoVideo.addEventListener("ended", function () {
+      track("video_complete", {});
+    });
+  }
+
+  if (form) {
     resetBtn.addEventListener("click", function () {
       form.reset();
       servicioField.value = "";
