@@ -264,25 +264,23 @@
           submitBtn.textContent = "Enviar";
         });
     });
+  }
 
   /* ═══════════ Vídeo promocional ═══════════
-     Se activa solo cuando index.html lleva un ID en data-video-id;
-     el iframe de YouTube no se carga hasta que el usuario pulsa play. */
+     Vídeo autoalojado: la portada se retira al pulsar y aparecen
+     los controles nativos del navegador. */
   var videoFrame = document.getElementById("videoFrame");
   if (videoFrame) {
-    var videoId = videoFrame.getAttribute("data-video-id");
+    var promoVideo = document.getElementById("promoVideo");
     var videoCover = videoFrame.querySelector(".video-cover");
-    if (videoId) videoCover.querySelector(".video-caption").textContent = "Ver el vídeo";
     videoCover.addEventListener("click", function () {
-      if (!videoId) return;
-      var yt = document.createElement("iframe");
-      yt.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1&rel=0";
-      yt.title = "Vídeo promocional de La App de las Guardias";
-      yt.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
-      yt.setAttribute("allowfullscreen", "");
-      videoFrame.innerHTML = "";
-      videoFrame.appendChild(yt);
+      videoCover.classList.add("hide");
+      promoVideo.controls = true;
+      promoVideo.play();
       track("video_play", {});
+    });
+    promoVideo.addEventListener("ended", function () {
+      track("video_complete", {});
     });
   }
 

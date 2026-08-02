@@ -64,16 +64,16 @@
 </section>
 
 <!-- ══════════════ VÍDEO PROMOCIONAL ══════════════
-     Cuando el vídeo esté subido a YouTube, pega su ID en data-video-id.
-     El ID es lo que sigue a «watch?v=» en la URL del vídeo:
-     https://www.youtube.com/watch?v=ABC123xyz  →  data-video-id="ABC123xyz" -->
+     Vídeo autoalojado en assets/video/promo.mp4. Para sustituirlo,
+     reemplaza ese archivo (y promo-poster.jpg como portada). -->
 <section class="sec sec-video" id="video">
   <div class="kicker"><span class="kline" aria-hidden="true"></span><span>La app, en un minuto</span></div>
   <h2 class="h-xl">Mira cómo funciona.</h2>
-  <div class="video-frame" id="videoFrame" data-video-id="">
+  <div class="video-frame" id="videoFrame">
+    <video id="promoVideo" src="assets/video/promo.mp4" poster="assets/video/promo-poster.jpg" preload="metadata" playsinline></video>
     <button class="video-cover" type="button" aria-label="Reproducir vídeo promocional">
       <span class="video-play" aria-hidden="true"></span>
-      <span class="video-caption">Vídeo promocional — muy pronto</span>
+      <span class="video-caption">Ver el vídeo — 53 segundos</span>
     </button>
   </div>
 </section>
